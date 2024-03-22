@@ -1,0 +1,41 @@
+﻿<style>
+    .login-page {
+        background-size: cover;
+        height: 100vh!important;
+        width: 100% !important;
+        background-image: url(../../assets/img/pexels-ksenia-chernaya-5.jpg);
+        color: white;
+    }
+</style>
+<div class="login-box">
+    <!-- <account-header></account-header> -->
+    <div>
+        <div class="card py-3">
+            <!-- <div class="card-header">
+                Mens Room
+            </div> -->
+            <div *ngIf="showTenantChange()" class="card-header">
+                <tenant-change></tenant-change>
+            </div>
+            <div class="card-body login-card-body">
+                <!-- <router-outlet></router-outlet> -->
+
+                <app-login></app-login>
+                <div class="text-center mt-3">
+                    <b>Powered by </b>
+
+                </div>
+                <div class="text-center ">
+
+
+                    <img class="w-50" src="../../assets/img/logo.png" alt="">
+                </div>
+            </div>
+
+            <!-- <div class="card-footer">
+                <account-languages></account-languages>
+            </div> -->
+        </div>
+    </div>
+    <!-- <account-footer></account-footer> -->
+</div>

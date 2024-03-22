@@ -1,0 +1,249 @@
+<section>
+    <div class="" style="background-color:#9fa38f !important;height: 10vh !important;">
+        <app-main-header></app-main-header>
+        <!-- s1 -->
+    </div>
+</section>
+<hr>
+<div class="container py-5">
+    <h2 class="display-3  py-4 text-center">ADD BOOKING</h2>
+    <form class="form-horizontal booking" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+        <div class="row ">
+            <div class="mb-5 p-0 m-0">
+                <div class="card  ">
+
+                    <h3 class="card-header">
+                        {{ "Select Activity Type" | localize }}
+                    </h3>
+
+                    <div class="card-body">
+                        <ul class="list-group">
+
+                            <li class="list-group-item" *ngFor="let item of bookingActivityTypes;let i = index">
+                                <div class="block w-100">
+                                    <span style="display: inline-flex;"><input class="mr-3" type="radio" [id]="i" [(ngModel)]="createBooking.bookingActivityTypeId" name="fav_language" [value]="item.id">
+                                        <h5>{{item.name}}</h5></span>
+                                    <h6 class="float-right">{{item.timeInMinutes}} min</h6>
+                                </div>
+                                <p class="mb-0">{{item.description}}</p>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card mb-5 p-0 m-0">
+                <div class="row p-0 m-0">
+                    <!-- <abp-modal-header [title]="'Create Booking' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header> -->
+                    <h3 class="card-header ">Select Employee</h3>
+                    <div class="card col-2 cursor-pointer m-3" (click)="selectEmployee(employee,i,true)" [ngClass]="{ 'active': this.selectedIndex == i}" *ngFor="let employee of employees; let i = index">
+                        <!-- <div class="card-header">
+                        <h6>Select Category</h6>
+                    </div> -->
+                        <div class="card-body">
+                            <img *ngIf="employee.pictureUrl !== null && employee.pictureUrl !== ''" [src]="employee.pictureUrl" title="sasa" class="img-setting d-block w-100" alt="...">
+                            <img title="aaaa" *ngIf="!(employee.pictureUrl !== null && employee.pictureUrl !== '')" [src]="imgNotFoundUrl" class="img-setting d-block w-100" alt="...">
+                            <div class="card-body text-center">
+                                <h5 class="card-title float-none text-black">{{employee.name}}</h5>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-5 p-0 m-0">
+                <div class="card  ">
+
+                    <h3 class="card-header">
+                        {{ "Select Date Time" | localize }}
+                    </h3>
+
+                    <div class="card-body">
+                        <app-calendar (dateChanged)="startdateChangedHandler($event)"></app-calendar>
+                        <!-- <input type="datetime-local" class="form-control" name="fromDate" id="fromDate" required [(ngModel)]="createBooking.fromDate" /> -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- <div class="mb-5 p-0 m-0">
+                <div class="card  ">
+
+                    <h3 class="card-header">
+                        {{ "Select To Date" | localize }}
+                    </h3>
+
+                    <div class="card-body">
+                        <input type="datetime-local" class="form-control" name="toDate" id="toDate" required [(ngModel)]="createBooking.toDate" #toDateModel="ngModel" #toDateEl />
+                        <abp-validation-summary [control]="toDateModel" [controlEl]="toDateEl"></abp-validation-summary>
+                    </div>
+
+                </div>
+            </div> -->
+
+
+        </div>
+
+        <div class="card p-0 m-0">
+            <h3 class="card-header">Login details</h3>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label" for="name">
+                    {{ "Name" | localize }}
+                  </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="name" id="name" required maxlength="32" [(ngModel)]="customer.name" #nameModel="ngModel" #nameEl />
+                                <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row required">
+                        <label class="col-md-3 col-form-label" for="surname">
+                    {{ "Surname" | localize }}
+                  </label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="surname" id="surname" required maxlength="32" [(ngModel)]="customer.surname" #surnameModel="ngModel" #surnameEl />
+                            <abp-validation-summary [control]="surnameModel" [controlEl]="surnameEl"></abp-validation-summary>
+                        </div>
+                    </div> -->
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label" for="userName">
+                    {{ "UserName" | localize }}
+                  </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="userName" id="userName" required minlength="2" maxlength="32" [(ngModel)]="customer.userName" #userNameModel="ngModel" #userNameEl />
+                                <abp-validation-summary [control]="userNameModel" [controlEl]="userNameEl"></abp-validation-summary>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row required">
+                        <label class="col-md-3 col-form-label" for="usetType">
+                    {{ "UserType" | localize }}
+                  </label>
+                        <div class="col-md-9">
+                            <select type="text" class="form-control" name="userType" id="usetType" required disabled [(ngModel)]="customer.userTypeId" #userTypeModel="ngModel" #userTypeEl>
+                      <option *ngFor="let userType of userTypes" [value]="userType.id">
+                        {{ userType.name }}
+                      </option>
+                    </select>
+                            <abp-validation-summary [control]="userTypeModel" [controlEl]="userTypeEl"></abp-validation-summary>
+                        </div>
+                    </div> -->
+                        <!-- <div class="form-group row required">
+                        <label class="col-md-3 col-form-label" for="responsibleEmployee">
+                          {{ "Responsible Employee" | localize }}
+                        </label>
+                        <div class="col-md-9">
+                            <select type="text" class="form-control" name="responsibleEmployee" id="responsibleEmployee" required [(ngModel)]="customer.responsibleEmployeeId" #responsibleEmployeeModel="ngModel" #responsibleEmployeeEl>
+                            <option *ngFor="let employee of employees" [value]="employee.id">
+                              {{ employee.name }}
+                            </option>
+                          </select>
+                            <abp-validation-summary [control]="responsibleEmployeeModel" [controlEl]="responsibleEmployeeEl"></abp-validation-summary>
+                        </div>
+                    </div> -->
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label" for="password">
+                    {{ "Password" | localize }}
+                  </label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" name="password" id="password" required maxlength="32" validateEqual="confirmPassword" reverse="true" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$" [(ngModel)]="customer.password"
+                                    #passwordModel="ngModel" #passwordEl />
+                                <abp-validation-summary [control]="passwordModel" [controlEl]="passwordEl" [customValidationErrors]="passwordValidationErrors"></abp-validation-summary>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row required">
+                        <label class="col-md-3 col-form-label" for="confirmPassword">
+                    {{ "ConfirmPassword" | localize }}
+                  </label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required maxlength="32" validateEqual="password" reverse="false" ngModel #confirmPasswordModel="ngModel" #confirmPasswordEl />
+                            <abp-validation-summary [control]="confirmPasswordModel" [controlEl]="confirmPasswordEl" [customValidationErrors]="confirmPasswordValidationErrors"></abp-validation-summary>
+                        </div>
+                    </div> -->
+
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label" for="currency">
+                    {{ "Country" | localize }}
+                  </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="country" id="country" required minlength="2" maxlength="32" [(ngModel)]="customer.country" #countryModel="ngModel" #countryEl />
+                                <abp-validation-summary [control]="countryModel" [controlEl]="countryEl"></abp-validation-summary>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label" for="address">
+                    {{ "Address" | localize }}
+                  </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="address" id="address" required maxlength="250" [(ngModel)]="customer.address" #addressModel="ngModel" #addressEl />
+                                <abp-validation-summary [control]="addressModel" [controlEl]="addressEl"></abp-validation-summary>
+                            </div>
+                        </div>
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label" for="emailAddress">
+                    {{ "EmailAddress" | localize }}
+                  </label>
+                            <div class="col-md-9">
+                                <input type="email" class="form-control" name="emailAddress" id="emailAddress" required maxlength="256" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$" [(ngModel)]="customer.emailAddress" #emailAddressModel="ngModel" #emailAddressEl />
+                                <abp-validation-summary [control]="emailAddressModel" [controlEl]="emailAddressEl">
+                                </abp-validation-summary>
+                            </div>
+                        </div>
+
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label" for="telephoneFax">
+                    {{ "Telephone" | localize }}
+                  </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="telephoneFax" id="telephoneFax" required minlength="2" maxlength="32" [(ngModel)]="customer.telephoneFax" #telephoneFaxModel="ngModel" #telephoneFaxEl />
+                                <abp-validation-summary [control]="telephoneFaxModel" [controlEl]="telephoneFaxEl"></abp-validation-summary>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createUserModal.form.valid || saving" (onCancelClick)="bsModalRef.hide()" [width]="'150px'"></abp-modal-footer> -->
+
+        <div class="form-group" style="margin: 2rem 0.4rem;">
+            <button [disabled]="!createUserModal.form.valid || saving" class="btn btn-primary btn-lg btn-block">Book Appointment</button>
+        </div>
+    </form>
+</div>
+
+<app-main-footer></app-main-footer>
+
+<!-- <script>
+    var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+    var cardWidth = $(".carousel-item").width();
+    var scrollPosition = 0;
+    $(".carousel-control-next").on("click", function() {
+        if (scrollPosition < (carouselWidth - cardWidth * 4)) { //check if you can go any further
+            scrollPosition += cardWidth; //update scroll position
+            $(".carousel-inner").animate({
+                scrollLeft: scrollPosition
+            }, 600); //scroll left
+        }
+    });
+    $(".carousel-control-prev").on("click", function() {
+        if (scrollPosition > 0) {
+            scrollPosition -= cardWidth;
+            $(".carousel-inner").animate({
+                    scrollLeft: scrollPosition
+                },
+                600
+            );
+        }
+    });
+</script> -->

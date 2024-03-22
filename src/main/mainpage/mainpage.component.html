@@ -1,0 +1,452 @@
+<app-main-header [hidden]="isIframe"></app-main-header>
+
+<!-- <div>
+
+<div
+  class="header background-image-wrapper"
+  *ngIf="!isIframe || sectionParam == 'header'"
+>
+  <img class="background-image" src="{{ config?.header.backgroundImage }}" />
+  <div style="height: 100%">
+    <div class="d-flex flex-column justify-content-center h-100">
+      <h1>{{ config?.header.title }}</h1>
+      <p>{{ config?.header.subtitle }}</p>
+      <div class=" ">
+        <button class="btn w-25" type="submit">
+          {{ config?.header.buttonText }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="p-5"></p>
+<div
+  class="container-fluid d-flex justify-content-center"
+  *ngIf="!isIframe || sectionParam == 'section2'"
+  id="div2"
+>
+  <div>
+    <img class="img-fluid" src="{{ config?.section2.image }}" alt="" />
+  </div>
+  <div class="">
+    <p class="p-5"></p>
+    <div class="card1">
+      <div class="card-body">
+        <h3>
+          {{ config?.section2.title }}
+        </h3>
+        <p>
+          {{ config?.section2.description }}
+        </p>
+        <button class="btn" type="submit">
+          {{ config?.section2.buttonText }}
+        </button>
+        <p class="p-3"></p>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="p-5"></p>
+<div
+  class="container-fluid"
+  *ngIf="!isIframe || sectionParam == 'section3'"
+  id="div3"
+  style="
+    background-color: #9fa38f;
+    color: #fff;
+    text-align: center;
+    font-weight: 400;
+  "
+>
+  <div class="container">
+    <h3 class="p-5">
+      {{ config?.section3.title }}
+    </h3>
+    <p>{{ config?.section3.description }}</p>
+    <p class="p-5"></p>
+  </div>
+</div>
+<div
+  id="div4"
+  *ngIf="!isIframe || sectionParam == 'news'"
+  class="container p-3 align-items-center"
+>
+  <h2 class="text-center p-2" style="color: #806e4b">News</h2>
+  <div class="row p-2" style="text-align: center !important">
+    <div class="col-4">
+      <img
+        class="w-100"
+        src="{{ config?.news.image1 }}"
+        width=""
+        height="270"
+        alt=""
+      />
+      <p class="fs-6 lead p-1">{{ config?.news.date1 }}</p>
+      <p>
+        <b>{{ config?.news.title1 }}</b>
+      </p>
+    </div>
+
+    <div class="col-4">
+      <img class="w-100" src="{{ config?.news.image2 }}" alt="" />
+      <p class="fs-6 p-1">{{ config?.news.date2 }}</p>
+      <p>
+        <b> {{ config?.news.title2 }}</b>
+      </p>
+    </div>
+    <div class="col-4">
+      <img class="w-100" src="{{ config?.news.image3 }}" height="270" alt="" />
+      <p class="fs-6 p-1">{{ config?.news.date3 }}</p>
+      <p>
+        <b>{{ config?.news.title3 }}</b>
+      </p>
+    </div>
+  </div>
+</div>
+<div
+  id="div5"
+  *ngIf="!isIframe || sectionParam == 'section5'"
+  class="container-fluid d-flex justify-content-center py-5"
+>
+  <div><img class="img-fluid" src="{{ config?.section5.image }}" alt="" /></div>
+  <div class="">
+    <p class="p-5"></p>
+    <div class="card2">
+      <div class="card-body">
+        <h3 class="p-3">{{ config?.section5.title }}</h3>
+        <p>{{ config?.section5.description }}</p>
+        <button class="btn" type="submit">
+          {{ config?.section5.buttonText }}
+        </button>
+        <p class="p-3"></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="container-fluid py-5"
+  id="div6"
+  *ngIf="!isIframe || sectionParam == 'section6'"
+  style="background-color: #806e4b; color: #fff"
+>
+  <div class="text-center container p-5">
+    <h3 class="p-5">{{ config?.section6.title }}</h3>
+    <p>{{ config?.section6.description }}</p>
+    <p></p>
+    <button class="btn" type="submit">
+      <b> {{ config?.section6.buttonText }}</b>
+    </button>
+  </div>
+  <p class="p-5"></p>
+  <div class="row p-5">
+    <div class="col-3">
+      <img class="w-100" src="{{ config?.section6.image1 }}" alt="" />
+    </div>
+    <div class="col-3">
+      <img class="w-100" src="{{ config?.section6.image2 }}" alt="" />
+    </div>
+    <div class="col-3">
+      <img class="w-100" src="{{ config?.section6.image3 }}" alt="" />
+    </div>
+    <div class="col-3">
+      <img class="w-100" src="{{ config?.section6.image4 }}" alt="" />
+    </div>
+  </div>
+</div>
+<div
+  class="p-5"
+  id="div7"
+  *ngIf="!isIframe || sectionParam == 'clientReviews'"
+  style="background-color: #f6f3ef; color: #806e4b"
+>
+  <h3 class="p-4 text-center">From our clients</h3>
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <p>{{ config?.clientReviews.review1 }}</p>
+      <h3 class="fs-6">— {{ config?.clientReviews.clientName1 }}</h3>
+    </div>
+    <div class="col-3">
+      <p>{{ config?.clientReviews.review2 }}</p>
+      <p class="p-2"></p>
+      <h3 class="fs-6">— {{ config?.clientReviews.clientName2 }}</h3>
+    </div>
+    <div class="col-3">
+      <p>{{ config?.clientReviews.review3 }}</p>
+      <h3 class="fs-6">— {{ config?.clientReviews.clientName3 }}</h3>
+    </div>
+  </div>
+  <div class="p-5"></div>
+</div>
+<div
+  class="container-fluid"
+  *ngIf="!isIframe || sectionParam == 'giftCards'"
+  style="font-family: Arial, sans-serif"
+>
+  <div class="background-image-wrapperrow text-center">
+    <img class="background-image" src="{{ config?.giftCards.backgroundImage }}" alt="">
+    <div class="fs-5">
+      <h3 class="p-5">Gift cards</h3>
+      <p>{{ config?.giftCards.description }}</p>
+    </div>
+    <div class=" ">
+      <button class="btn" type="submit">
+        <b> {{ config?.giftCards.buttonText }}</b>
+      </button>
+    </div>
+  </div>
+  <div
+    class="row"
+    style="background-color: #806e4b; color: #fff; text-align: center"
+  >
+    <p class="p-5"></p>
+    <h3 class="">{{ config?.giftCards.title2 }}</h3>
+    <p>{{ config?.giftCards.description2 }}</p>
+    <div class="">
+      <button class="btn" type="submit">
+        <b>{{ config?.giftCards.buttonText2 }}</b>
+      </button>
+      <p class="p-5"></p>
+    </div>
+    <p class="p-5"></p>
+  </div>
+</div>
+<div
+  class="container-fluid"
+  id="div9"
+  *ngIf="!isIframe || sectionParam == 'section9'"
+  style="background-color: #f6f3ef"
+>
+  <h1 class="p-5 text-center">{{ config?.section9.title }}</h1>
+  <div class="container">
+    <div class="row text-center image-grid">
+      <div class="col-3 image-grid-item">
+        <img class="img-fluid img" src="{{ config?.section9.image1 }}" />
+      </div>
+      <div class="col-3 image-grid-item">
+        <img class="img-fluid img" src="{{ config?.section9.image2 }}" />
+      </div>
+      <div class="col-3 image-grid-item">
+        <img class="img-fluid img" src="{{ config?.section9.image3 }}" />
+      </div>
+      <div class="col-3 image-grid-item">
+        <img class="img-fluid img" src="{{ config?.section9.image4 }}" />
+      </div>
+    </div>
+  </div>
+
+  <p class="p-5"></p>
+
+</div>
+<div
+  id="div10"
+  class="container-fluid bgImg2 py-5"
+  *ngIf="!isIframe || sectionParam == 'section10'"
+>
+  <h1 class="p-5">{{ config?.section10.title }}</h1>
+  <p>{{ config?.section10.description }}</p>
+  <div>
+    <button class="btn" type="submit">
+      {{ config?.section10.buttonText }}
+    </button>
+    <p class="p-3"></p>
+  </div>
+</div>
+</div> -->
+
+<!--
+  carousel start -->
+  <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../assets/img/main-banner.png" class="d-block w-100" alt="...">
+      </div>
+
+      <div class="carousel-item">
+        <img src="../../assets/img/Frame_1_1_.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src=" ../../assets/img/main-banner2.png" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<!-- carousel ends -->
+<div class="container-fluid  " style="background-color: #01928f; color: #fff; font-size:16px;;">
+    <div class="row p-1 ">
+        <div class=" ms-5 col">
+            <img src="https://leisner.dk/media/wysiwyg/icon-help.png" alt="">
+            Gratis behandlingsvejledning</div>
+        <div class="col">
+            <img src="https://leisner.dk/media/wysiwyg/icon-logo.png" alt="">
+            Kvaliteten siden 1973</div>
+        <div class="col">
+            <img src="https://leisner.dk/media/wysiwyg/icon-prod.png" alt="">
+            Vi holder åbent og passer på hinanden</div>
+        <div class="col">
+            <img src="https://leisner.dk/media/wysiwyg/icon-delivery.png" alt="">
+            Fri fragt v. køb over 750,-</div>
+    </div>
+</div>
+<!-- cards start -->
+      <div class="container mt-5 " style="width: 100%;height: auto;">
+           <div class="d-flex flex-row justify-content-center ">
+                <div class="mycard">
+                <div class="container-fluid  bg-white p-3 text-center">
+                  <img class="img-fluid" width="110" src="https://leisner.dk/media/catalog/tmp/category/icon_Enuresis_7.png" alt="">
+                </div>
+                  <div class="  text-center " >
+                  <span>Vådliggeralarm</span>
+                    </div>
+                    </div>
+                    <div class="mycard">
+                        <div class="container-fluid  bg-white p-3 text-center">
+                          <img class="img-fluid" width="110" src="https://leisner.dk/media/catalog/tmp/category/Frame_10_1_.png" alt="">
+                        </div>
+                          <div class="  text-center " >
+                            <span>Medicin/alarm ure</span>
+                            </div>
+                            </div>
+                            <div class="mycard">
+                                <div class="container-fluid  bg-white p-3 text-center">
+                                  <img class="img-fluid" width="110" src="	https://leisner.dk/media/catalog/tmp/category/Frame_9.png" alt="">
+                                </div>
+                                  <div class="  text-center " >
+                                    <span>Sengetøj </span>
+                                    </div>
+                      </div>
+                       <div class="mycard">
+                       <div class="container-fluid  bg-white p-3 text-center">
+                        <img class="img-fluid" width="110" src="https://leisner.dk/media/catalog/tmp/category/Frame_13_.png" alt="">
+                        </div>
+                          <div class="  text-center " >
+                         <span>Mor og Barn</span>
+                         </div>
+                            </div>
+                    <div class="mycard">
+                    <div class="container-fluid  bg-white p-3 text-center">
+                    <img class="img-fluid" width="110" src="https://leisner.dk/media/catalog/tmp/category/Frame_1__1.png" alt="">
+                     </div>
+                       <div class="text-center   " >
+                       <span>Puder der støtter</span>
+                    </div>
+                    </div>
+
+                         <div class="mycard ">
+                          <div class="container-fluid  bg-white p-3 text-center">
+                           <img class="img-fluid" width="110" src="	https://leisner.dk/media/catalog/tmp/category/mundbind.png" alt="">
+                             </div>
+                       <div class="  text-center " >
+                         <span>Maske - mundbind</span>
+                           </div>
+
+                         </div>
+              </div>
+            </div>
+            <!-- cards ends -->
+
+       <div class="container p-5">
+        <div class="row">
+            <div class="col">
+                <div style="color: #01928f; border-bottom: 1px solid #f28327;">
+                   <h2> Astrid Leisner</h2>
+                </div>
+                <div style="color: #ccc; font-size: 18px;" class="lead">
+                <strong>har startede firma i 1973 med en vision af at hjælpe børn at blive tør om naten med hjælp af vådligger/enuresis alarmer. Igennem årene rakkede hendes kærlig hånd til mange. </strong>
+
+                <p class="mt-4">I dag dem med epilepsi, inkontinens (vandtæt sengetøj, inkontinens undertøj), hukommelsesbesvær (pilleæske, medicin ure) kan søger hjælp hos os. Sidst ikke mindst tilbyder vi hjælp med støte/lejrings pude, nakkepude og til mødre og børn har vi mange spændende produkter. Får hjælp til at bare huske forskellige akviterer (børneure).</p>
+           </div>
+            </div>
+            <div class="col">
+                <img src="../../assets/img/img1_1.png" class="img-fluid" alt="">
+            </div>
+            <div class="col" style="color: #fff;background-color: #01928f;font-size: 18px; text-align: justify; font-weight: 700;">
+                <p class="p-4">
+                   Vi specialiseret os i en række mindre og meget fleksible kaldeanlæg, hovedsageligt inden for:
+                </p>
+                <ul>
+                    <li class="li"><a href="">Epilepsi</a></li>
+                    <li class="li"><a href="">Fald</a></li>
+                    <li class="li"><a href="">Inkontinens</a></li>
+                    <li class="li"><a href="">Demens</a></li>
+                    <li class="li"><a href="">Personkald</a></li>
+                    <li  class="li"><a href="">Industri og erhverv</a></li>
+                    </ul>
+            </div>
+        </div>
+       </div>
+
+  <div class="container mt-5">
+    <div class="d-flex flex-row justify-content-center">
+
+<div class=" ">
+<img src="../../assets/img/img2_1.png" alt="">
+</div>
+<div class="ms-5">
+<img class=" img-fluid " src="../../assets/img/support-main-bn_1.jpg" height="100" width="520" >
+
+</div>
+    </div>
+  </div>
+
+
+
+
+
+<div class="container">
+<div class="two-banners-block  w-100 mt-4 " style="margin-top: 20px; margin-bottom: 40px;">
+    <div class="row">
+        <div class="col-xl-6 two-banners-block-left">
+            <div class="d-flex h-100 align-items-center colbg" >
+            <div class="row text-center">
+                <div class="col-sm-12 ">
+                    <p class="ms-5">Med råd og vejledning hjælper vi,med</p>
+                       <p class=""> at få tørre og glade børn.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 two-banners-block-right">
+        <div class="h-100 p-4" style="background-color: #e8e8e8;height: 100%;">
+            <div class="row" style="height: 100%; margin: 0;">
+                <div class="col-sm-4 d-flex align-items-center " style="background-color: #00918e;color: #fff;  font-style: normal;
+                font-weight: 600 !important;
+                text-align: center;
+                font-size: 16px !important ;">
+                    <p class="mt-3"> WE PARTICIPATE IN THE PROJECT DEMENTIA</p>
+                </div>
+                <div class="col-sm-8 d-flex align-items-center">
+                    <img class="img-fluid" src="../../assets/img/banner-home-page-right.png" alt=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class=" container-fluid bg ">
+<div class="container p-5 ">
+<h2 class="p-5">Moderne velfærdsteknologi, der hjælper mennesker.</h2>
+<div class="container">
+<p>I 1973 udviklede Astrid Leisner en
+ <span class="text1 border-0"> vådliggeralarm</span>, der afhjalp hendes søn, Sune (direktør i Leisner ApS i dag), med nattetisseri. Siden da, har vi hjulpet mere end 95.000 danske børn og deres forældre med at blive tørre om natten. I en undersøgelse foretaget for tre år siden, opnåede 83% af alle der benyttede vores vådliggeralarmer og rådgivning, at børnene blev tørre</p>
+<p class="p-2 "  >
+  Vi forhandler produkter der hjælper mennesker i hverdagen. Alt fra vådliggerlagner til vådliggeralarmer, pilleæsker med alarm, epilepsi-alarmer, ammepuder, graviditetspuder og kaldeanlæg til private og erhverv. Med mere end 40 års erfaring, er vi den længst eksiterende virksomhed af sin art i Danmark og markedsledende med hjælpemidler indenfor moderne velfærdsteknologi.
+</p>
+ </div>
+ <ul class="p-1" >
+  <li class="text1">SENGETØJ</li>
+  <li  class="text1">TISSEURE</li>
+  <li  class="text1">VÅDLIGGER</li>
+  <li class="text1">MEDICINURE</li>
+  <li class="text1 border-0">PILLEÆSKER - ALT INDENFOR VELFÆRDSTEKNOLOGI!</li>
+</ul>
+</div>
+</div>
+
+<app-main-footer *ngIf="!isIframe"></app-main-footer>

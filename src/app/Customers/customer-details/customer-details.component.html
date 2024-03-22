@@ -1,0 +1,260 @@
+<div [@routerTransition]>
+    <form>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="d-flex flex-row justify-content-between">
+                    <div>
+                        <h4>{{ "CustomerDetails" | localize }}</h4>
+                    </div>
+                    <div>
+                        <!-- <a href="javascript:;" class="btn bg-blue mr-2" (click)="createInvoices(customer)">
+                            <i class="fa fa-plus-square"></i> {{ "Create" | localize }}
+                        </a>
+                        <a href="javascript:;" class="btn bg-blue mr-1" (click)="createActivity(customer)">
+                            <i class="fa fa-plus-square"></i> {{ "Activity" | localize }}
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container-fluid">
+            <tabset>
+                <tab [heading]="'CustomerDetails' | localize" class="pt-3 px-2">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="name">
+                  {{ "Name" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="name" id="name" required maxlength="32" [(ngModel)]="customer.name" #nameModel="ngModel" #nameEl />
+                                    <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="surname">
+                  {{ "Surname" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="surname" id="surname" maxlength="32" [(ngModel)]="customer.surname" #surnameModel="ngModel" #surnameEl />
+                                    <abp-validation-summary [control]="surnameModel" [controlEl]="surnameEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="userName">
+                  {{ "UserName" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="userName" id="userName" minlength="2" maxlength="32" [(ngModel)]="customer.userName" #userNameModel="ngModel" #userNameEl />
+                                    <abp-validation-summary [control]="userNameModel" [controlEl]="userNameEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="usetType">
+                  {{ "UserType" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <select type="text" class="form-control" name="userType" id="usetType" [(ngModel)]="customer.userTypeId" #userTypeModel="ngModel" #userTypeEl>
+                    <option *ngFor="let userType of userTypes" [value]="userType.id">
+                      {{ userType.name }}
+                    </option>
+                  </select>
+                                    <abp-validation-summary [control]="userTypeModel" [controlEl]="userTypeEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="responsibleEmployee">
+                  {{ "Responsible Employee" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <select type="text" class="form-control" name="responsibleEmployee" id="responsibleEmployee" [(ngModel)]="customer.responsibleEmployeeId" #responsibleEmployeeModel="ngModel" #responsibleEmployeeEl>
+                    <option *ngFor="let employee of employees" [value]="employee.id">
+                      {{ employee.name }}
+                    </option>
+                  </select>
+                                    <abp-validation-summary [control]="responsibleEmployeeModel" [controlEl]="responsibleEmployeeEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="emailAddress">
+                  {{ "EmailAddress" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="email" class="form-control" name="emailAddress" id="emailAddress" maxlength="256" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$" [(ngModel)]="customer.emailAddress" #emailAddressModel="ngModel" #emailAddressEl />
+                                    <abp-validation-summary [control]="emailAddressModel" [controlEl]="emailAddressEl">
+                                    </abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="website">
+                  {{ "Website" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="website" id="website" minlength="2" maxlength="150" [(ngModel)]="customer.website" #websiteModel="ngModel" #websiteEl />
+                                    <abp-validation-summary [control]="websiteModel" [controlEl]="websiteEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <label class="col-md-3 col-form-label">
+                  {{ "IsActive" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="isActive" id="isActive" [(ngModel)]="customer.isActive" />
+                                        <label class="custom-control-label mt-2" for="isActive"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="customerNum">
+                  {{ "Customer No" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="customerNum" id="customerNum" maxlength="32" [(ngModel)]="customer.customerNo" #customerNoModel="ngModel" #customerNoEl />
+                                    <abp-validation-summary [control]="customerNoModel" [controlEl]="customerNoEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="address">
+                  {{ "Address" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="address" id="address" maxlength="250" [(ngModel)]="customer.address" #addressModel="ngModel" #addressEl />
+                                    <abp-validation-summary [control]="addressModel" [controlEl]="addressEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="postcode">
+                  {{ "PostCode" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="postcode" id="postcode" minlength="2" maxlength="32" [(ngModel)]="customer.postcode" #postCodeModel="ngModel" #postCodeEl />
+                                    <abp-validation-summary [control]="postCodeModel" [controlEl]="postCodeEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="townCity">
+                  {{ "Town/City" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="townCity" id="townCity" minlength="2" maxlength="32" [(ngModel)]="customer.townCity" #townCityModel="ngModel" #townCityEl />
+                                    <abp-validation-summary [control]="townCityModel" [controlEl]="townCityEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="telephoneFax">
+                  {{ "Telephone" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="telephoneFax" id="telephoneFax" minlength="2" maxlength="32" [(ngModel)]="customer.telephoneFax" #telephoneFaxModel="ngModel" #telephoneFaxEl />
+                                    <abp-validation-summary [control]="telephoneFaxModel" [controlEl]="telephoneFaxEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="currency">
+                  {{ "Country" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="country" id="country" minlength="2" maxlength="32" [(ngModel)]="customer.country" #countryModel="ngModel" #countryEl />
+                                    <abp-validation-summary [control]="countryModel" [controlEl]="countryEl"></abp-validation-summary>
+                                </div>
+                            </div>
+                            <div class="form-group row required">
+                                <label class="col-md-3 col-form-label" for="currency">
+                  {{ "Currency" | localize }}
+                </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="currency" id="currency" minlength="2" maxlength="32" [(ngModel)]="customer.currency" #currencyModel="ngModel" #currencyEl />
+                                    <abp-validation-summary [control]="currencyModel" [controlEl]="currencyEl"></abp-validation-summary>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+                    <app-custom-fields *ngIf="isCustomFieldsAvailable" [disabled]="false" [customFields]="customer.customFields"></app-custom-fields>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <div class="col-md-12 text-right">
+
+                                    <a href="javascript:;" class="btn bg-primary btn-block mr-1" (click)="save()">
+                                        <i class="fas fa-save"></i> {{ "Save" | localize }}
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </tab>
+
+                <tab [heading]="'Activies' | localize" class="pt-3 px-2">
+                    <div class="form-group row mb-0 w-100">
+                        <div *ngIf="customer.userId > 0 " class="w-100">
+                            <app-activities [customerId]="customer.userId"></app-activities>
+                        </div>
+                    </div>
+                </tab>
+                <tab [heading]="'Sales' | localize" class="pt-3 px-2">
+                    <div class="form-group row mb-0 w-100">
+                        <div *ngIf="customer.id > 0 " class="w-100">
+                            <app-invoices [customerId]="customer.id"> </app-invoices>
+                        </div>
+                    </div>
+                </tab>
+
+                <!-- <tab [heading]="'PhoneCallNote' | localize">
+                    <div class="form-group row mb-0 w-100">
+                        <div *ngIf="customer.id > 0 " class="w-100">
+                            <app-phone-call-activity [selectedCustomer]="customer"> </app-phone-call-activity>
+                        </div>
+                    </div>
+                </tab>
+
+
+                <tab [heading]="'SMSNote' | localize">
+                    <div class="form-group row mb-0 w-100">
+                        <div *ngIf="customer.id > 0 " class="w-100">
+                            <app-sms-activity [selectedCustomer]="customer"> </app-sms-activity>
+                        </div>
+                    </div>
+                </tab>
+
+                <tab [heading]="'EmailNote' | localize">
+                    <div class="form-group row mb-0 w-100">
+                        <div *ngIf="customer.id > 0 " class="w-100">
+                            <app-email-activity [selectedCustomer]="customer"> </app-email-activity>
+                        </div>
+                    </div>
+                </tab>
+
+                <tab [heading]="'Invites' | localize">
+                    <div class="form-group row mb-0 w-100">
+                        <div *ngIf="customer.id > 0 " class="w-100">
+                            <app-customer-invites [selectedCustomer]="customer"> </app-customer-invites>
+                        </div>
+                    </div>
+                </tab>
+
+                <tab [heading]="'Faults' | localize">
+                    <div class="form-group row mb-0 w-100">
+                        <div *ngIf="customer.id > 0 " class="w-100">
+                            <app-faults [customerId]="customer.id" [isDisplayCloseFaultButton]="false"></app-faults>
+                        </div>
+                    </div>
+                </tab> -->
+            </tabset>
+        </div>
+    </form>
+</div>

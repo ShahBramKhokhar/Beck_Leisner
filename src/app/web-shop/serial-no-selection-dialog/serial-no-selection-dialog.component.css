@@ -1,0 +1,18 @@
+.custom-select {
+    height: 200px;
+    overflow-y: auto;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+  }
+  ::ng-deep .custom-select option {
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    padding:5px;
+    text-align: center;
+    margin:5px;
+  }
+  ::ng-deep .custom-select option:hover {
+    background-color: #ddd;
+  }

@@ -1,0 +1,7 @@
+.scroll{
+    overflow-y: scroll !important;
+    height: 80vh !important;
+}
+.list-group-item{
+    border: 2px solid gray !important;
+ }

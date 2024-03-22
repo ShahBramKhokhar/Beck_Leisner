@@ -1,0 +1,50 @@
+body {
+    background: #eee;
+  }
+  
+  .name {
+    color: blue;
+  }
+  
+  .work {
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
+  .about span {
+    font-size: 13px;
+  }
+  
+  .v-profile {
+    color: blue;
+    cursor: pointer;
+  }
+  
+  .box {
+    -webkit-box-shadow: 13px 12px 5px -10px rgba(196,194,196,0.72);
+    -moz-box-shadow: 13px 12px 5px -10px rgba(196,194,196,0.72);
+    box-shadow: 13px 12px 5px -10px rgba(196,194,196,0.72);
+  }
+  
+  .col-md-3 {
+    margin-top: 10px;
+  }
+  
+.bg-img{
+    background-image: url(../../assets/img/girls.jpg);
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    height: 95vh;
+    background-position: center;
+
+  }
+  .btn{
+    border-color: #fff !important;
+      color: #fff;
+      background-color: transparent;
+    
+    }
+    .btn:hover{
+      color: black;
+      background-color: #fff;
+    }

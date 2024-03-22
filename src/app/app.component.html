@@ -1,0 +1,36 @@
+<style>
+  .msg_send_btn {
+    background: #808f05 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 32px;
+    height: 61px;
+    width: 61px;
+  }
+
+  .chat-message-button {
+    position: fixed;
+    bottom: 20px;
+    z-index: 56339;
+    right: 90px;
+  }
+</style>
+
+<div class="wrapper">
+  <app-header></app-header>
+  <sidebar></sidebar>
+  <div class="content-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
+  <app-chat *ngIf="isMessengerVisible"></app-chat>
+  <div class="chat-message-button">
+    <button class="msg_send_btn" (click)="onChatClick()" type="button">
+      <i class="fa fa-comments"></i>
+    </button>
+  </div>
+
+  <div id="sidebar-overplay" (click)="toggleSidebar()"></div>
+</div>

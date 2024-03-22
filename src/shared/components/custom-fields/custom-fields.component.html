@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    Custom Fields
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let field of customFields">
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="address">
+            {{ field.label | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="{{getCustomFieldType(field.type)}}" class="form-control" name="{{field.label+i}}" [disabled]="disabled" required maxlength="250"
+              [(ngModel)]="field.value" #customFieldModel="ngModel" #customFieldEl />
+            <abp-validation-summary [control]="customFieldModel" [controlEl]="customFieldEl"></abp-validation-summary>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

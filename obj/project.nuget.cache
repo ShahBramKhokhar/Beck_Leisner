@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "NSwpm8LnUAYIdOLaGSPBYM2AVNM4kjkogLl13DhosmkseB+pVsdf5ywfX+hvFXrmCXpxy4BuL6kbCXfQMM7B8Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ShahBram\\Downloads\\Beck_Leisner-master\\Webminux.Optician.AngularUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ShahBram\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.28\\microsoft.netcore.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\ShahBram\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.28\\microsoft.windowsdesktop.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\ShahBram\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.28\\microsoft.aspnetcore.app.ref.6.0.28.nupkg.sha512"
+  ],
+  "logs": []
+}

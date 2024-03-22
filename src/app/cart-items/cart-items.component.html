@@ -1,0 +1,115 @@
+<div>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <h1>{{ "Cart Items" | localize }}</h1>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">&emsp;</div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <!-- <div class="input-group-prepend">
+                                <button type="button" class="btn bg-blue" (click)="getDataPage(1)">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div> -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered bg-light">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>{{ "Product Name" | localize }}</th>
+                                    <th>{{ "Quantity" | localize }}</th>
+                                    <th>{{ "Price" | localize }}</th>
+                                    <th>{{ "Sub Total" | localize }}</th>
+                                    <th style="width: 7rem;">{{ "Actions" | localize }}</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light">
+                                <tr *ngFor="
+                                        let invoiceLines of invoice.invoiceLines
+                                      ">
+                                    <td>{{ invoiceLines.productName }}</td>
+                                    <td>{{ invoiceLines.quantity }}</td>
+                                    <td>{{ invoiceLines.costPrice }}</td>
+                                    <td>{{ invoiceLines.quantity * invoiceLines.costPrice }}</td>
+                                 
+                                    <td>
+                                      <!-- <a href="javascript:;" class="btn bg-blue mr-1" (click)="customerDetails(customer)">
+                                          <i class="fas fa-eye"></i>
+                                      </a> -->
+
+                                      <a href="javascript:;" class="btn bg-red mr-1" (click)="delete(invoiceLines)">
+                                          <i class="fas fa-trash"></i>
+                                      </a>
+                                  </td>
+                                </tr>
+                                
+                               
+                            </tbody>
+                        </table>
+                       
+                    </div>
+                </div>
+                <!-- <div class="card-footer table-card-footer bg-light border-top">
+                  <div class="row">
+                      <div class="col-sm-4 col-12 text-sm-left text-center">
+                          <button class="btn btn-secondary" (click)="refresh()">
+                            <i class="fas fa-redo-alt"></i>
+                        </button>
+                      </div>
+                      <div class="col-sm-4 col-12 text-center">
+                          <p class="mb-0 my-2">
+                              {{ "TotalRecordsCount" | localize: totalItems }}
+                          </p>
+                      </div>
+                      <div class="col-sm-4 col-12">
+                          <div class="float-sm-right m-auto">
+                              <abp-pagination-controls id="server" (pageChange)="getDataPage($event)">
+                              </abp-pagination-controls>
+                          </div>
+                      </div>
+                  </div>
+              </div> -->
+              <div class="row " style="margin-top: 0; padding: 0 !important;">
+               <div class="col-8 "></div>
+               <div class="col mt-0">&nbsp; &nbsp; 
+                <strong class="shadow  ms-5  ">&nbsp;Total : $678688</strong></div>
+            </div>
+             
+                <div class="row">
+                   <div class="col-6"></div>
+                    <div class="col-6">
+                      <div class=" float-right m-3  ">
+                            <div class="input-group mb-3 ">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Amount </span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                     &nbsp;  &nbsp;  &nbsp;  <button class="btn btn-secondary " (click)="save()">
+                      <!-- <i class="fas fa-redo-alt"></i>   -->
+                      Pay
+                      </button>
+                            </div>
+                        
+                      
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

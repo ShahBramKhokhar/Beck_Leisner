@@ -1,0 +1,258 @@
+<form class="form-horizontal" #createOrderForm="ngForm" autocomplete="off" (ngSubmit)="save()">
+    <abp-modal-header [title]="'Create Sale Invoice' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body">
+        <!-- <div class="d-flex flex-row   justify-content-between w-100">
+            <div>
+                <h3 class="my-4"> {{ "Invoice Details" }}</h3>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="invoiceNo">
+                                        {{ "InvoiceNo" | localize }}
+                                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="invoiceNo" id="invoiceNo" maxlength="32" [(ngModel)]="invoice.invoiceNo" #invoiceNoModel="ngModel" #invoiceNoEl />
+                        <abp-validation-summary [control]="invoiceNoModel" [controlEl]="invoiceNoEl">
+                        </abp-validation-summary>
+                    </div>
+                </div> -->
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="name">
+                        {{ "Customer" | localize }}
+                      </label>
+                    <div class="col-md-9">
+                        <input type="text" [value]="selectedCustomer.fullName" class="form-control" disabled>
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="invoiceDate">
+                                        {{ "InvoiceDate" | localize }}
+                                    </label>
+                    <div class="col-md-9">
+                        <input type="date" class="form-control" name="invoiceDate" id="invoiceDate" [(ngModel)]="invoiceDate" />
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="dueDate">
+                                        {{ "DueDate" | localize }}
+                                    </label>
+                    <div class="col-md-9">
+                        <input type="date" class="form-control" name="dueDate" id="dueDate" [(ngModel)]="dueDate" #dueDateEl />
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="comment">
+                                        {{ "Comment" | localize }}
+                                    </label>
+                    <div class="col-md-9">
+                        <textarea type="text" class="form-control" name="comment" id="comment" maxlength="250" [(ngModel)]="invoice.comment"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <!-- <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="comment">
+                                        {{ "Customer" | localize }}
+                                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" maxlength="250" name="customerName" id="customerName" [(ngModel)]="invoice.customerName" #customerNameModel="ngModel" #customerEl>
+                        <abp-validation-summary [control]="customerNameModel" [controlEl]="customerEl"></abp-validation-summary>
+                    </div>
+                </div> -->
+
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="amount">
+                                        {{ "Amount" | localize }}
+                                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="amount" id="amount" maxlength="32" [(ngModel)]="invoice.amount" #amountModel="ngModel" #amountEl />
+                        <abp-validation-summary [control]="amountModel" [controlEl]="amountEl"></abp-validation-summary>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="currency">
+                                        {{ "Currency" | localize }}
+                                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="currency" id="currency" maxlength="32" [(ngModel)]="invoice.currency" #currencyModel="ngModel" #currencyEl />
+                        <!-- <abp-validation-summary [control]="currencyModel" [controlEl]="currencyModel">
+                        </abp-validation-summary> -->
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="currency">
+                                        {{ "Invoice No" | localize }}
+                                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="invoiceNo" id="invoiceNo" maxlength="32" [(ngModel)]="invoice.invoiceNo" #invoiceNo="ngModel" />
+                        <!-- <abp-validation-summary [control]="currencyModel" [controlEl]="currencyModel">
+                        </abp-validation-summary> -->
+                    </div>
+                </div>
+
+
+                <!-- <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="serialNumber">
+                                        {{ "SerialNumber" | localize }}
+                                    </label>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="serialNumber" id="serialNumber" maxlength="32" [(ngModel)]="invoice.serialNumber" #serialNumberModel="ngModel" #serialNumberEl />
+                        <abp-validation-summary [control]="serialNumberModel" [controlEl]="serialNumberModel">
+                        </abp-validation-summary>
+                    </div>
+
+                </div> -->
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button type="button" class="btn bg-blue" (click)="addProduct()">
+                    <i class="fa fa-plus-square"></i>
+                    {{ "Add Invoice Line" | localize }}
+                  </button>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="w-25">Product</th>
+                                    <th>Quantity</th>
+                                    <!-- <th>Cost Price</th> -->
+                                    <!-- <th>Promised Date</th>
+                                    <th class="w-25">Total</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let orderLine of invoiceLines;let i=index">
+                                    <td>
+                                        <div class="form-group required">
+                                            <select type="text" class="form-control" name="{{'product'+i}}" required [(ngModel)]="orderLine.productNumber" #productModel="ngModel" #productEl>
+                              <option *ngFor="let product of products" [value]="product.id">
+                                {{ product.name }}
+                              </option>
+                            </select>
+                                            <!-- <abp-validation-summary [control]="supplierModel" [controlEl]="supplierEl">
+                                            </abp-validation-summary> -->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group required">
+                                            <input type="text" class="form-control" name="{{'quantity'+i}}" required [(ngModel)]="orderLine.quantity" (change)="calculateInvoiceLineTotal(orderLine)" #quantityModel="ngModel" #quantityEl />
+                                            <!-- <abp-validation-summary [control]="quantityModel" [controlEl]="quantityEl">
+                                            </abp-validation-summary> -->
+                                        </div>
+                                    </td>
+
+                                    <!-- <td>
+                          <div class="form-group required">
+                            <input type="text" class="form-control" name="{{'price'+i}}" required
+                              (change)="calculateOderLineTotal(orderLine)" [(ngModel)]="orderLine.price" #priceModel="ngModel"
+                              #priceEl />
+                            <abp-validation-summary [control]="priceModel" [controlEl]="priceEl">
+                            </abp-validation-summary>
+                          </div>
+                        </td> -->
+                                    <!-- <td>
+                          <div class="form-group required">
+                            <input type="date" class="form-control" name="{{'promisedDate'+i}}" id="promisedDate" required
+                              (change)="setOrderLinePromisedDate(orderLine)" [(ngModel)]="orderLine.promissedDate"
+                              #promisedDateModel="ngModel" #promisedDateEl />
+                            <abp-validation-summary [control]="promisedDateModel" [controlEl]="promisedDateEl">
+                            </abp-validation-summary>
+                          </div>
+                        </td> -->
+                                    <!-- <td>
+                                        <div class="form-group required">
+                                            <span class="form-control">{{orderLine.total}}</span>
+                                        </div>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <div class="mt-2 ml-2">
+                            <h4>
+                                {{ "Total:"| localize }}{{ orderTotal | number }}
+                            </h4>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+                            <div class="col-12">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="my-4"> {{ "InvoiceLines" | localize }}</h3>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>{{ "LineNo" | localize }}</th>
+                                                <th>{{ "ProductName" | localize }}</th>
+                                                <th>{{ "ProductNumber" | localize }}</th>
+                                                <th>{{ "Quantity" | localize }}</th>
+                                                <th style="width: 310px;">{{ "Actions" | localize }}</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let invoiceLine of invoiceLines | paginate
+                        : {
+                            id: 'server',
+                            itemsPerPage: pageSize,
+                            currentPage: pageNumber,
+                            totalItems: totalItems
+                          }">
+                                                <td>{{ invoiceLine.lineNo }}</td>
+                                                <td>{{ invoiceLine.productName }}</td>
+                                                <td>{{ invoiceLine.productNumber }}</td>
+                                                <td>{{ invoiceLine.quantity }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm bg-secondary" (click)="addFault(invoiceLine)">
+                                <i class="fas fa-plus-square"></i>
+                                {{ "Add Fault" | localize }}
+                            </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer table-card-footer bg-light border-top">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-12 text-sm-left text-center">
+                                            <button class="btn btn-secondary" (click)="refresh()">
+                                <i class="fas fa-redo-alt"></i>
+                            </button>
+                                        </div>
+                                        <div class="col-sm-4 col-12 text-center">
+                                            <p class="mb-0 my-2">
+                                                {{ "TotalRecordsCount" | localize: totalItems }}
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-4 col-12">
+                                            <div class="float-sm-right m-auto">
+                                                <abp-pagination-controls id="server" (pageChange)="getDataPage($event)">
+                                                </abp-pagination-controls>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+    </div>
+    <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createOrderForm.form.valid || saving" (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

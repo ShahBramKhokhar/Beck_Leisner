@@ -1,0 +1,197 @@
+/* .header {
+  color: #fff;
+  text-align: center;
+  height: max(80vh, 500px);
+  overflow: hidden;
+}
+.background-image-wrapper {
+  position: relative;
+}
+.background-image-wrapper > .background-image {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+}
+.bg-img {
+  background-image: url(../../assets/img/DareToCare_29.09.21_0166.jpg);
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  height: 93vh !important;
+}
+.btn {
+  border-color: #fff !important;
+  color: #fff;
+  background-color: transparent;
+}
+.btn:hover {
+  color: black;
+  background-color: #fff;
+}
+.card1 {
+  position: relative !important;
+  color: #fff;
+  width: 30rem;
+
+  background-color: #806e4b;
+  margin-left: -19rem;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  grid-gap: 10px !important;
+
+  display: block;
+}
+
+.card2 {
+  display: flexbox !important;
+  position: relative !important;
+  color: #fff;
+  width: 45rem;
+
+  background-color: #806e4b;
+  margin-left: -19rem;
+  font-weight: 200;
+}
+.bgImg {
+  background-image: url(../../assets/img/DareToCare_29.09.21_0166.jpg);
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  height: 50vh !important;
+  color: #fff !important;
+}
+.bgImg2 {
+  background-image: url(../../assets/img/2.jpg);
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  height: 60vh !important;
+  color: #fff !important;
+  text-align: center;
+}
+.image-grid {
+  column-count: 4 !important;
+}
+
+.img {
+  border-bottom: 8px solid #f6f3ef !important;
+} */
+
+
+
+
+
+
+.mycard{
+
+  width: 15% !important;
+  max-width: 170px;
+  height: auto;
+  /* height: 16%  !important; */
+   border: 2px solid #ccc  !important;
+  margin: 5px !important;
+  display: flex !important;
+flex-wrap: wrap !important;
+  flex-direction: column !important;
+ border-radius: 5px;
+
+background-color: #ccc !important;
+color: #fff !important;
+}
+/* Default styles for all screen sizes */
+.card {
+width: 16.666%;
+height: auto;
+}
+
+/* Styles for screens up to 480px wide */
+@media screen and (max-width: 480px) {
+.mycard {
+  width: 100%;
+  height: auto;
+}
+}
+
+/* Styles for screens between 481px and 768px wide */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+.mycard {
+  width: 25%;
+  height: auto;
+}
+}
+
+/* Styles for screens between 769px and 1024px wide */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+.mycard {
+  width: 20%;
+  height: auto;
+}
+}
+
+/* Styles for screens wider than 1024px */
+@media screen and (min-width: 1025px) {
+.mycard {
+  width: 15.555%;
+  height: auto;
+}
+}
+
+.mycard:hover{
+ color: #fff !important;
+  background-color: #01928f !important;
+  border: 3px solid #01928f  !important;
+}
+.text1
+{
+
+display: inline-block;
+  font-weight: 600;
+  font-size: medium;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  line-height: 22px;
+  color: #f28327;
+  padding: 0 10px;
+  border-right: 2px solid #f28327;
+
+}
+.text1:hover{
+text-decoration: underline;
+
+}
+.li{
+  display: block;
+  text-decoration: underline;
+}
+
+.colbg{
+background-image: url(../../assets/img/banner-home-page-left.png);
+background-size: cover; background-position: center;
+font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+font-style: normal;
+font-weight: 600 !important;
+
+font-size: 22px !important ;
+color: #00918e;
+text-align: center !important;
+}
+
+.bg{
+  background-image: url(../../assets/img/modern-technology-block.png);
+
+height: 70vh;
+background-size: cover !important;
+text-align: center;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+.t2{
+font-size: 14px;
+  line-height: 19px;
+  opacity: 0.6;
+  color: grey !important;
+}
+a{
+  color: #fff;
+  text-decoration: none;
+}

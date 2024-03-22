@@ -1,0 +1,159 @@
+<div class="container py-5">
+    <form class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+
+        <div class="mb-5">
+            <div class="card  ">
+                <h3 class="card-header">
+                    {{ "Select Activity Type" | localize }}
+                </h3>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let item of bookingActivityTypes;let i = index">
+                            <div class="block w-100">
+                                <span style="display: inline-flex;"><input class="mr-3" type="radio" [id]="i" [(ngModel)]="createBooking.bookingActivityTypeId" name="fav_language" [value]="item.id">
+                                    <h5>{{item.name}}</h5></span>
+                                <h6 class="float-right">{{item.timeInMinutes}} min</h6>
+                            </div>
+                            <p class="mb-0">{{item.description}}</p>
+                        </li>
+                        <li class="list-group-item" >
+                            <div class="block w-100">
+                                
+                                    <h5>Description</h5>
+                                    <textarea class="w-100"  name="Description" [(ngModel)]="createBooking.description" >
+                                    </textarea>
+                            </div>
+                         
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row mb-md-5">
+            <!-- <abp-modal-header [title]="'Create Booking' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header> -->
+            <h3 class="card-header">Select Employee</h3>
+            <div class="card col-2 cursor-pointer" (click)="selectEmployee(employee.id)" [ngClass]="{ 'active': createBooking.employeeIds.includes(employee.id)}" *ngFor="let employee of employees; let i = index">
+                <!-- <div class="card-header">
+                    <h6>Select Category</h6>
+                </div> -->
+                <div class="card-body">
+                    <img *ngIf="employee.pictureUrl !== null && employee.pictureUrl !== ''" [src]="employee.pictureUrl" title="sasa" class="img-setting d-block w-100" alt="...">
+                    <img title="aaaa" *ngIf="!(employee.pictureUrl !== null && employee.pictureUrl !== '')" [src]="imgNotFoundUrl" class="img-setting d-block w-100" alt="...">
+                    <div class="card-body text-center">
+                        <h5 class="card-title float-none text-black">{{employee.name}}</h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=" mb-md-5">
+
+            <div class="card  p-0 m-0">
+
+                <h3 class="card-header">
+                    {{ "Select Date Time" | localize }}
+                </h3>
+
+                <div class="card-body">
+                    <!-- <input type="datetime-local" class="form-control" name="fromDate" id="fromDate" required [(ngModel)]="createBooking.fromDate" /> -->
+                    <app-calendar (dateChanged)="startdateChangedHandler($event)"></app-calendar>
+                </div>
+
+            </div>
+        </div>
+        <!-- <div class="mt-md-5">
+            <div class="card  p-0 m-0">
+
+                <h3 class="card-header">
+                    {{ "Select To Date" | localize }}
+                </h3>
+
+                <div class="card-body">
+                    <input type="datetime-local" class="form-control" name="toDate" id="toDate" required [(ngModel)]="createBooking.toDate" #toDateModel="ngModel" #toDateEl />
+                    <abp-validation-summary [control]="toDateModel" [controlEl]="toDateEl"></abp-validation-summary>
+                </div>
+
+            </div>
+        </div> -->
+
+
+        <abp-modal-footer [cancelDisabled]="saving" [saveLabel]="'Book Appointment'" [saveDisabled]="!createUserModal.form.valid || saving" (onCancelClick)="bsModalRef.hide()" [width]="'250px'"></abp-modal-footer>
+    </form>
+</div>
+
+
+
+
+
+
+<!-- <div class="container py-5">
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8 col-sm-12">
+            <form class="form-horizontal" autocomplete="off" #createeForm="ngForm" (ngSubmit)="save()">
+
+
+                <div class="form-group row required">
+                    <label class="col-md-2 col-form-label" for="name">
+              {{ "FromDate" | localize }}
+            </label>
+                    <div class="col-md-9">
+                        <input type="datetime-local" class="form-control" name="name" id="name" required [(ngModel)]="createBooking.fromDate" />
+
+                    </div>
+                </div>
+
+                <div class="form-group row required">
+                    <label class="col-md-2 col-form-label" for="name">
+                {{ "ToDate" | localize }}
+              </label>
+                    <div class="col-md-9">
+                        <input type="datetime-local" class="form-control" name="name" id="name" required [(ngModel)]="createBooking.toDate" #toDateModel="ngModel" #toDateEl />
+                        <abp-validation-summary [control]="toDateModel" [controlEl]="toDateEl"></abp-validation-summary>
+                    </div>
+                </div>
+
+                <div class="form-group row required">
+                    <label class="col-md-2 col-form-label" for="responsibleEmployee">
+              {{ "Employees" | localize }}
+            </label>
+                    <div class="col-md-9">
+                        <select type="text" class="form-control" name="responsibleEmployee" id="responsibleEmployee" required multiple [(ngModel)]="createBooking.employeeIds" #responsibleEmployeeModel="ngModel" #responsibleEmployeeEl>
+                <option *ngFor="let employee of employees" [value]="employee.id">
+                  {{ employee.name }}
+                </option>
+              </select>
+                        <abp-validation-summary [control]="responsibleEmployeeModel" [controlEl]="responsibleEmployeeEl"></abp-validation-summary>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2 ">
+                        </div>
+
+                        <div class="col-md-9">
+                            <button type="submit" class="btn btn-primary btn-lg " [disabled]="!createeForm.form.valid || saving ">Save</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
+</div> -->
+
+
+
+<!-- <abp-validation-summary
+                [control]="fromDateModel"
+                [controlEl]="fromDateEl"
+              ></abp-validation-summary> -->

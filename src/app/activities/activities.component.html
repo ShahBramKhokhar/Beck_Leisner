@@ -1,0 +1,178 @@
+<div [@routerTransition] class="w-100">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <h1>{{ "Activities" | localize }}</h1>
+        </div>
+        <div class="col-6 text-right" *ngIf="isAdminUser()">
+          <a href="javascript:;" class="btn bg-light" (click)="ToggleCalenderView()">
+
+            <i class="fa fa-list"></i>
+            {{ "ListView" | localize }}
+          </a>
+
+          <a href="javascript:;" class="btn bg-light" (click)="ToggleCalenderView()">
+            <i class="fa fa-calendar"></i>
+            {{ "CalendarView" | localize }}
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section [hidden]="isCalendarView" class="content px-2">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+              <div class="input-group">
+                <!-- <div class="input-group-prepend">
+                  <button type="button" class="btn bg-blue" (click)="getDataPage(1)">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div> -->
+                <input type="text" class="form-control" name="keyword" [placeholder]="'SearchWithThreeDot' | localize"
+                  [(ngModel)]="keyword" (keyup.enter)="getDataPage(1)"  (ngModelChange)="getDataPage(1)"/>
+                <!-- <div class="input-group-append">
+                  <button type="button" class="btn btn-default"
+                    (click)="advancedFiltersVisible = !advancedFiltersVisible">
+                    <i class="fas" [class.fa-angle-up]="advancedFiltersVisible"
+                      [class.fa-angle-down]="!advancedFiltersVisible"></i>
+                  </button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div *ngIf="advancedFiltersVisible && isFromCustomer===false" class="card mb-0 mt-1">
+            <div class="card-body">
+              <form class="form-horizontal">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label" for="customerId">
+                        {{ "Customer" | localize }}
+                      </label>
+                      <div class="col-md-9">
+                        <select type="text" class="form-control" name="customerId" [(ngModel)]="customerId"
+                          id="customerId" #customerIdModel="ngModel" #customerIdEl>
+                          <option value="">{{ "Select" | localize }}</option>
+                          <option *ngFor="let customer of customers" [value]="customer.id">
+                            {{ customer.fullName }}
+                          </option>
+                        </select>
+                        <abp-validation-summary [control]="customerIdModel" [controlEl]="customerIdEl">
+                        </abp-validation-summary>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn bg-blue" (click)="getDataPage(1)">
+                {{ "Search" | localize }}
+              </button>
+              <button type="button" class="btn btn-default float-right" (click)="clearFilters()">
+                {{ "Clear" | localize }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered" [busy]="isTableLoading">
+              <thead class="bg-light">
+                <tr>
+
+                  <th>{{ "ActivityName" | localize }}</th>
+                  <th>{{ "ActivityType" | localize }}</th>
+                  <th>{{ "ActivityDate" | localize }}</th>
+                  <th>{{ "FollowUpType" | localize }}</th>
+                  <th>{{ "FollowUpDate" | localize }}</th>
+                  <th>{{ "Customer" | localize }}</th>
+                  <th>{{"Employee"| localize}}</th>
+                  <th style="min-width: 7rem;">{{"Date"| localize}}</th>
+                  <th>{{"Room"|localize}}</th>
+                  <th style="min-width: 7rem;">{{ "Actions" | localize }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="
+                let activity of activities
+                  | paginate
+                    : {
+                        id: 'server',
+                        itemsPerPage: pageSize,
+                        currentPage: pageNumber,
+                        totalItems: totalItems
+                      }
+              ">
+
+                  <td>{{ activity.name }}</td>
+                  <td>{{ activity.activityTypeName }}</td>
+                  <td>{{ activity.date | date }}</td>
+                  <td>{{ activity.followUpTypeName }}</td>
+                  <td>{{ activity.followUpDate | date }}</td>
+                  <td>{{ activity.customerName }}</td>
+                  <td>{{ activity.employeeName }}</td>
+                  <td>{{ activity.date |date }}</td>
+                  <td>{{ activity.roomName }}</td>
+                  <td>
+                    <!-- <button type="button" class="btn btn-sm bg-secondary" (click)="editActivity(activity)">
+                      <i class="fas fa-pencil-alt"></i>
+                      {{ "Info" | localize }}
+                    </button> -->
+
+                   
+
+                    <a href="javascript:;"  class="btn bg-primary mr-1" (click)="openActivity(activity)">
+                      <i class="fas fa-eye"></i>
+                      <!-- {{ "Open" | localize }} -->
+                    </a>
+                    <a href="javascript:;"  class="btn bg-danger mr-1" (click)="delete(activity)">
+                      <i class="fas fa-trash"></i>
+                      <!-- {{ "Delete" | localize }} -->
+                    </a>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer table-card-footer bg-light border-top">
+          <div class="row">
+            <div class="col-sm-4 col-12 text-sm-left text-center">
+              <button class="btn btn-secondary" (click)="refresh()">
+                <i class="fas fa-redo-alt"></i>
+              </button>
+            </div>
+            <div class="col-sm-4 col-12 text-center">
+              <p class="mb-0 my-2">
+                {{ "TotalRecordsCount" | localize: totalItems }}
+              </p>
+            </div>
+            <div class="col-sm-4 col-12">
+              <div class="float-sm-right m-auto">
+                <abp-pagination-controls id="server" (pageChange)="getDataPage($event)">
+                </abp-pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section [hidden]="!isCalendarView" class="content px-2">
+
+    <app-calendar></app-calendar>
+  </section>
+
+
+</div>

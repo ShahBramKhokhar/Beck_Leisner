@@ -1,0 +1,13 @@
+<a class="brand-link  text-center p-0" [routerLink]="['/app/customers']"  >
+ <div >
+
+  <img  class="img-fluid" *ngIf="companyInfo && companyInfo.logoUrl"
+  [src]="companyInfo.logoUrl"
+  alt="logo"/>
+<img  *ngIf="!companyInfo || !companyInfo.logoUrl"
+class="img-fluid "
+style="height: 2.4rem;"
+src="../../assets/img/logo.png" alt="">
+ </div>
+
+</a>

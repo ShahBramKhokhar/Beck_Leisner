@@ -1,0 +1,16 @@
+
+.btn{
+  border-color: #fff !important;
+    color: #fff;
+    background-color: transparent;
+  
+  }
+  .btn:hover{
+    color: black;
+    background-color: #fff;
+  }
+ 
+
+
+
+

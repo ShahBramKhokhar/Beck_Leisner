@@ -1,0 +1,171 @@
+<form class="form-horizontal" autocomplete="off" #editActivityModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'CreateActivity' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group d-flex flex-column required">
+          <label class="col-form-label" for="name">
+            {{ "Name" | localize }}
+          </label>
+          <div>
+            <input type="text" class="form-control" name="name" id="name" required [(ngModel)]="activity.name"
+              #nameModel="ngModel" #nameKindEl />
+            <abp-validation-summary [control]="nameModel" [controlEl]="nameKindEl"></abp-validation-summary>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group d-flex flex-column required">
+          <label class="col-form-label" for="name">
+            {{ "Customer" | localize }}
+          </label>
+         <input type="text" [value]="selectedCustomer.fullName" class="form-control" disabled>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group d-flex flex-column required">
+          <label class="col-form-label" for="name">
+            {{ "ActivityKind" | localize }}
+          </label>
+          <div>
+            <select type="text" class="form-control" name="activityKind" id="activityKind" required
+              [(ngModel)]="activity.activityArtId" #activityKindModel="ngModel" #activityKindEl>
+              <option *ngFor="let activityKind of activityKinds" [value]="activityKind.id">
+                {{ activityKind.name }}
+              </option>
+            </select>
+            <abp-validation-summary [control]="activityKindModel" [controlEl]="activityKindEl"></abp-validation-summary>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group d-flex flex-column required">
+          <label class="col-form-label" for="name">
+            {{ "Date" | localize }}
+          </label>
+          <div>
+            <input type="date" class="form-control" name="date" id="date" required [(ngModel)]="activityDate"
+              #dateModel="ngModel" #dateEl />
+            <abp-validation-summary [control]="dateModel" [controlEl]="dateEl"></abp-validation-summary>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group d-flex flex-column required">
+          <label class="col-form-label" for="name">
+            {{ "ActivityType" | localize }}
+          </label>
+          <div>
+            <select type="text" class="form-control" name="activityType" id="activityType" required
+              [(ngModel)]="activity.activityTypeId" #activityTypeModel="ngModel" #activityTypeEl>
+              <option *ngFor="let activityType of activityTypes" [value]="activityType.id">
+                {{ activityType.name }}
+              </option>
+            </select>
+
+            <abp-validation-summary [control]="activityTypeModel" [controlEl]="activityTypeEl"></abp-validation-summary>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group d-flex flex-column required">
+          <label class="col-form-label" for="name">
+            {{ "Employee" | localize }}
+          </label>
+          <div>
+            <select type="text" class="form-control" name="activityType" id="activityType" required
+              [(ngModel)]="activity.employeeId" #activityTypeModel="ngModel" #activityTypeEl>
+              <option *ngFor="let employee of employees" [value]="employee.id">
+                {{ employee.fullName }}
+              </option>
+            </select>
+
+            <abp-validation-summary [control]="activityTypeModel" [controlEl]="activityTypeEl"></abp-validation-summary>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group d-flex flex-column required">
+          <label class="col-form-label" for="name">
+            {{ "FollowType" | localize }}
+          </label>
+          <div>
+            <select type="text" class="form-control" name="FollowType" id="FollowType" required
+              [(ngModel)]="activity.followUpTypeId" #FollowTypeModel="ngModel" #FollowTypeEl>
+              <option *ngFor="let FollowType of FollowTypes" [value]="FollowType.id">
+                {{ FollowType.name }}
+              </option>
+            </select>
+
+            <abp-validation-summary [control]="FollowTypeModel" [controlEl]="FollowTypeEl"></abp-validation-summary>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group d-flex flex-column required">
+          <label class="col-form-label" for="name">
+            {{ "Follow Up Date" | localize }}
+          </label>
+          <div>
+            <input type="date" class="form-control" name="followUpDate" id="followUpDate" required
+              [(ngModel)]="followUpDate" #followUpDateModel="ngModel" #followUpDateEl />
+            <abp-validation-summary [control]="followUpDateModel" [controlEl]="followUpDateEl"></abp-validation-summary>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group d-flex flex-column ">
+          <label class="col-form-label" for="name">
+            {{ "Room" | localize }}
+          </label>
+          <div>
+            <select type="text" class="form-control" name="room" id="room" 
+              [(ngModel)]="activity.roomId" #roomTypeModel="ngModel" #roomTypeEl>
+              <option *ngFor="let r of rooms" [value]="r.id">
+                {{ r.name }}
+              </option>
+            </select>
+
+            <abp-validation-summary [control]="roomTypeModel" [controlEl]="roomTypeEl"></abp-validation-summary>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-md-6">
+       
+          
+          <div class="form-group row mb-0">
+            
+            
+            <label class="col col-form-label mt-4">
+              {{ "Invited Activity" | localize }}
+            </label>
+            <div class="col mt-4">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="InvitedActivity" id="isInvited"
+                  [(ngModel)]="activity.isInvited" />
+                <label class="custom-control-label mt-2" for="isInvited"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!editActivityModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

@@ -1,0 +1,32 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createUserModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'Select Serial No' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <p>Kindly select {{quantity}} serials</p>
+    <div class="col-md-8">
+      <div class="form-group d-flex flex-column required">
+          <label class="col-form-label" for="productGroup">
+          {{ "Product Serial No" | localize }}
+        </label>
+          <div>
+            <select style="height: 200px; overflow-y: auto; " multiple class="form-control custom-select" name="serial" id="serial" required [(ngModel)]="selectedSerial" #serialModel="ngModel" #serialEl>
+              <option *ngFor="let serial of serials" [value]="serial" >{{ serial.name }}</option>
+            </select>
+              <abp-validation-summary [control]="serialModel" [controlEl]="serialEl"></abp-validation-summary>
+          </div>
+      </div>
+  </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="quantity!==selectedSerial.length"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

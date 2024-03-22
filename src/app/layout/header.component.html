@@ -1,0 +1,40 @@
+<style>
+    #lblCartCount {
+        margin-top: 15px;
+        font-size: 12px;
+        background: #ff0000;
+        color: #fff;
+        padding: 0 5px;
+        vertical-align: top;
+        margin-left: -10px;
+    }
+
+    .s-cart {
+        color: white;
+        margin-right: 10px;
+    }
+
+     ::ng-deep .main-header .nav-link {
+        color: white !important;
+    }
+
+    .m-basket {
+        margin: 15px 15px 15px 0px;
+    }
+</style>
+<nav class="main-header navbar navbar-expand " id="main-header" style="background-color:#01928f">
+    <header-left-navbar></header-left-navbar>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown" dropdown>
+            <!-- <a routerLink='./cart-items' class="nav-link">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          </a> -->
+            <a routerLink='./cart-items' class="cursor-pointer s-cart">
+                <i title="View Basket" class="fa fa-shopping-cart m-basket"></i>
+                <span #couterSpan class='badge badge-warning' id='lblCartCount'> {{counter}} </span>
+            </a>
+        </li>
+        <header-language-menu></header-language-menu>
+        <header-user-menu></header-user-menu>
+    </ul>
+</nav>
